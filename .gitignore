@@ -1,0 +1,12 @@
+# 忽略服務帳戶金鑰
+service_account.json
+
+# 忽略環境變數檔案 (如果有使用的話)
+.env
+
+# 忽略暫存的爬蟲數據
+temp_raw_data/
+
+# 忽略 Python 快取
+__pycache__/
+*.pyc
