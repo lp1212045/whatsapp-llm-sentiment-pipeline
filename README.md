@@ -1,24 +1,25 @@
-# 🚀 Automated Marketing Data Pipeline & LLM Analysis
+# 🚀 Automated Marketing Data Pipeline & LLM Sentiment Analysis
 
 ## 📌 Overview
-This repository contains an automated data processing workflow designed to streamline marketing operations and customer sentiment analysis. By integrating Python, Large Language Models (LLMs), and cloud database solutions, this pipeline eliminates manual data handling and provides real-time, actionable insights for commercial decision-making.
+This repository contains an automated data processing workflow designed to streamline marketing operations and customer sentiment analysis. By integrating Python, Large Language Models (Gemini via Poe API), and Google Workspace APIs, this pipeline transforms unstructured daily WhatsApp conversational data into structured, actionable business intelligence.
 
 ## 💼 Business Impact
-* **Efficiency Leap:** Reduced daily operational processing time from 2-3 hours to just **15 minutes** (over 80% time saved).
-* **High-Volume Processing:** Capable of handling and extracting structured data from **~30,000** daily conversational records (e.g., WhatsApp raw data).
-* **Proactive Crisis Management:** Enables advanced sentiment analysis to instantly flag negative feedback and potential PR risks.
+* **Efficiency Leap:** Automated data cleaning and API requests reduce daily operational processing time from 2-3 hours to just **15 minutes** (over 80% time saved).
+* **High-Volume Processing:** Capable of downloading, deduplicating, and extracting data from **~30,000** daily conversational interactions.
+* **Proactive Crisis Management:** Leverages LLM to perform advanced sentiment analysis, categorizing feedback (Negative/Positive/Neutral) to instantly flag PR risks for immediate customer service intervention.
 
 ## 🛠️ Tech Stack
-* **Language:** Python 3.x
-* **AI & NLP:** LLMs (Prompt Engineering & Keyword Extraction)
+* **Language:** Python 3.x (pandas, regex)
+* **AI & NLP:** Gemini-2.5-Flash (via Poe API), Prompt Engineering
+* **Cloud & Integration:** Google Drive API (File fetching), Google Sheets API / gspread (Config reading & Data export)
+* **Performance:** `concurrent.futures` (Multi-threading for accelerated API requests)
 * **Automation:** GitHub Actions (CRON Jobs configured in `schedule.yml`)
-* **Database & BaaS:** Supabase / PostgreSQL (for structured data storage)
 
 ## ⚙️ How It Works
-1. **Data Ingestion:** `main.py` fetches raw, unstructured conversational data.
-2. **LLM Processing:** Feeds data into language models to perform sentiment analysis, keyword extraction, and data structuring.
-3. **Automated Execution:** Powered by GitHub Actions (`schedule.yml`), the script runs autonomously on a pre-defined schedule without manual intervention.
-4. **Reporting:** Outputs cleaned, structured data ready for monthly/quarterly business analytics dashboards.
+1. **Data Ingestion:** Authenticates via Google Service Account to dynamically search and download daily raw chat logs (.csv/.xlsx) from Google Drive.
+2. **Rule-Based Filtering:** Reads dynamic Keyword and Group configurations from a master Google Sheet, performing initial text deduplication and keyword matching.
+3. **LLM Processing (Multi-threaded):** Sends filtered conversational data to the LLM to classify user intent (`isSpam`) and perform granular brand sentiment analysis.
+4. **Automated Reporting:** Cleans and formats the final AI-processed data, appending it directly to a centralized Google Sheet for management dashboard visualization.
 
 ## 🔒 Security Note
-*For security and compliance reasons, all sensitive customer data, proprietary business logic, and API keys (OpenAI/Anthropic, Supabase, etc.) have been removed or masked in this public repository. This code serves as a structural demonstration of the automation pipeline.*
+*For security and compliance reasons, all sensitive configurations (Google Service Account credentials, API keys, Folder IDs, and Sheet URLs) are strictly managed via Environment Variables and GitHub Secrets. No real customer data or proprietary keys are exposed in this public repository.*
