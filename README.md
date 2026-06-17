@@ -1,8 +1,6 @@
-> 🌍 **Language:** [English](#english) | [繁體中文](#繁體中文)
+> 🌍 **Language:** English | [繁體中文](README_zh-HK.md)
 
 <br>
-
-<h2 id="english">🇬🇧 English Version</h2>
 
 # 🚀 Automated Marketing Data Pipeline & LLM Sentiment Analysis
 
@@ -29,35 +27,3 @@ This repository contains an automated data processing workflow designed to strea
 
 ## 🔒 Security Note
 *For security and compliance reasons, all sensitive configurations (Google Service Account credentials, API keys, Folder IDs, and Sheet URLs) are strictly managed via Environment Variables and GitHub Secrets. No real customer data or proprietary keys are exposed in this public repository.*
-
----
-
-<br>
-
-<h2 id="繁體中文">🇭🇰 繁體中文版</h2>
-
-# 🚀 自動化行銷數據流與大型語言模型 (LLM) 情感分析
-
-## 📌 專案概述
-本儲存庫包含一個自動化數據處理工作流，專為優化行銷營運與客戶情感分析而設計。透過整合 Python、大型語言模型（經由 Poe API 調用 Gemini）以及 Google Workspace API，此數據流能將每日非結構化的 WhatsApp 對話數據，自動轉化為結構化且具備商業價值的數據洞察。
-
-## 💼 商業價值
-* **效率躍升：** 自動化的數據清洗與 API 請求，成功將每日營運數據的處理時間從 2-3 小時大幅縮減至僅 **15 分鐘**（節省超過 80% 的時間成本）。
-* **高吞吐量處理：** 具備下載、去重並提取每日高達 **~30,000** 筆對話互動數據的處理能力。
-* **主動式危機管理：** 運用 LLM 進行進階的情感分析，將客戶反饋進行精準分類（負面 / 正面 / 中立），即時標記潛在公關風險，以便客服團隊能迅速介入處理。
-
-## 🛠️ 技術棧
-* **開發語言：** Python 3.x (pandas, regex)
-* **AI 與自然語言處理：** Gemini-2.5-Flash (經由 Poe API), 提示詞工程 (Prompt Engineering)
-* **雲端與系統串接：** Google Drive API (檔案自動抓取), Google Sheets API / gspread (讀取動態配置與數據匯出)
-* **效能優化：** `concurrent.futures` (利用多執行緒大幅加速 API 請求)
-* **自動化部署：** GitHub Actions (於 `schedule.yml` 設定 CRON 定時執行任務)
-
-## ⚙️ 運作流程
-1. **數據獲取：** 透過 Google 服務帳戶安全驗證，動態搜尋並從 Google Drive 批量下載每日的原始對話紀錄 (.csv/.xlsx)。
-2. **規則過濾：** 從主 Google Sheet 讀取動態關鍵字與群組配置，執行初步的文字去重與關鍵字精準比對。
-3. **LLM 處理 (多執行緒)：** 將過濾後的對話數據發送至 LLM，以分類用戶意圖 (自動過濾垃圾訊息) 並執行精細的品牌情感分析。
-4. **自動化報表：** 清洗並格式化經 AI 處理後的最終數據，將其直接附加至統一的 Google Sheet，供管理層的數據儀表板進行視覺化追蹤。
-
-## 🔒 資訊安全聲明
-*基於資訊安全與企業合規性考量，所有敏感配置（包含 Google 服務帳戶憑證、API 金鑰、資料夾 ID 與 Sheet URL）均嚴格透過環境變數 (Environment Variables) 與 GitHub Secrets 進行隱密管理。本公開儲存庫絕對不包含任何真實的客戶隱私數據或專有金鑰。*
