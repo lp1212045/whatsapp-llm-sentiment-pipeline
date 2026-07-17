@@ -47,7 +47,7 @@ graph TD
     E --> H{Manus AI Agent<br>Email Automation}
     H -->|Date Validation & Filtering| I[Negative Sentiment Alerts]:::alert
     I -->|Gmail API| J(Customer Service & Executives)
-    end
+    end```
 
 ### 1. `main.py` (Data Pipeline & LLM Engine)
 * **Data Ingestion:** Authenticates via a modularized Google Service Account to dynamically search and download daily raw chat logs (`.csv`/`.xlsx`) from Google Drive.
