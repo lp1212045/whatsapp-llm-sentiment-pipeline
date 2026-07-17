@@ -22,33 +22,6 @@ This repository contains a comprehensive automated data processing workflow desi
 
 ## ⚙️ Core Architecture & Modules
 
-```mermaid
-graph TD
-    %% 定義節點樣式
-    classDef llm fill:#f9f0ff,stroke:#d8b4e2,stroke-width:2px;
-    classDef sheet fill:#e6f4ea,stroke:#81c995,stroke-width:2px;
-    classDef alert fill:#fce8e6,stroke:#f28b82,stroke-width:2px;
-
-    A[WhatsApp Chat Data] -->|N8N / Auto-sync| B(Google Drive Raw Logs)
-    
-    subgraph Data Pipeline & AI Engine
-    B --> C{main.py<br>Data Processing}
-    C <-->|Poe API / Gemini 2.5| D[LLM Sentiment & Spam Analysis]:::llm
-    end
-
-    C -->|Batch Upload| E[(Google Sheets<br>Central Database)]:::sheet
-    
-    subgraph Analytics & Profiling
-    F(risk_analysis.py<br>User Risk Profiling) <--> E
-    G(dashboard.py<br>Metrics Aggregation) <--> E
-    end
-
-    subgraph Autonomous Alerting
-    E --> H{Manus AI Agent<br>Email Automation}
-    H -->|Date Validation & Filtering| I[Negative Sentiment Alerts]:::alert
-    I -->|Gmail API| J(Customer Service & Executives)
-    end```
-
 ### 1. `main.py` (Data Pipeline & LLM Engine)
 * **Data Ingestion:** Authenticates via a modularized Google Service Account to dynamically search and download daily raw chat logs (`.csv`/`.xlsx`) from Google Drive.
 * **Filtering & Deduplication:** Reads dynamic configuration from a master Google Sheet, performing strict text deduplication and keyword matching based on time tolerances and user identity scores.
