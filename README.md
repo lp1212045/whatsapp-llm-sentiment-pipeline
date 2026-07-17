@@ -22,6 +22,7 @@ This repository contains a comprehensive automated data processing workflow desi
 
 ## ⚙️ Core Architecture & Modules
 
+```mermaid
 graph TD
     %% 定義節點樣式
     classDef llm fill:#f9f0ff,stroke:#d8b4e2,stroke-width:2px;
